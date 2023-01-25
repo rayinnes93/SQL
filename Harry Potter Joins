@@ -1,0 +1,66 @@
+--create a table listing HP characters and their Patronuses-- 
+
+create table characters (id integer, firstname text, lastname text, patronus text);
+
+insert into characters values (1, "Hermione", "Granger", "Otter"); 
+
+insert into characters values (2, "Ron", "Weasley", "Terrier");
+
+insert into characters values (3, "Luna", "Lovegood", "Hare");
+
+insert into characters values (4, "Neville", "Longbottom", "Boar");
+
+insert into characters values (5, "Ginny", "Weasley", "Horse"); 
+
+insert into characters values (6, "Minerva", "McGonnagal", "Cat");
+
+insert into characters values (7, "Sirius", "Black", "German Shepherd");
+
+insert into characters values (8, "Lily", "Potter", "Doe");
+
+insert into characters values (9, "Dudley", "Dursley", "Muggle");
+
+insert into characters values (10, "Albus Severus", "Potter", "Asp Snake");
+
+insert into characters values (11, "Draco", "Malfoy", "Dragon");
+
+--create a table listing character's connections to Harry and their Hogwarts Houses -- 
+
+create table connection (id integer, Relation_To_HP text, Hogwarts_House text);
+
+insert into connection values (1, "Friend", "Gryffindor");
+
+insert into connection values (2, "Friend", "Gryffindor");
+
+insert into connection values (3, "Friend", "Ravenclaw");
+
+insert into connection values (4, "Friend", "Gryffindor");
+
+insert into connection values (5, "Wife", "Gryffindor");
+
+insert into connection values (6, "Teacher", "Gryffindor");
+
+insert into connection values (7, "Godfather", "Gryffindor");
+
+insert into connection values (8, "Mother", "Gryffindor");
+
+insert into connection values (9, "Cousin", "Muggle");
+
+insert into connection values (10, "Son", "Slytherin");
+
+insert into connection values (11, "Nemesis", "Slytherin");
+
+--List characters names, their relation to Harry, and their Hogwarts House--
+
+select characters.firstname, characters.lastname, connection.Relation_To_HP, connection.Hogwarts_House
+from characters
+left outer join connection
+on characters.id = connection.id;
+
+--List characters first names and their Patronuses, in order of their Hogwarts House-- 
+
+select characters.firstname as First_Name, connection.Hogwarts_House, characters.patronus 
+from characters
+join connection
+on characters.id = connection.id
+order by 2,1,3 asc; 
